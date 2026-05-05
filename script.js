@@ -1,4 +1,4 @@
-async function generatePage() {
+function generatePage() {
   const idea = document.getElementById('businessIdea').value.trim();
 
   if (!idea) {
@@ -10,58 +10,62 @@ async function generatePage() {
   btn.textContent = 'Generating...';
   btn.disabled = true;
 
-  try {
-    const result = await callClaude(idea);
+  setTimeout(() => {
+    const result = generateContent(idea);
     displayResult(result);
-  } catch (error) {
-    alert('Something went wrong. Please try again.');
-    console.error(error);
-  } finally {
     btn.textContent = 'Generate Landing Page';
     btn.disabled = false;
-  }
+  }, 1200);
 }
 
-async function callClaude(idea) {
-  const API_KEY = 'YOUR_API_KEY_HERE'; // We will fill this in next step
+function generateContent(idea) {
+  const words = idea.toLowerCase().split(' ');
 
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': API_KEY,
-      'anthropic-version': '2023-06-01',
-      'anthropic-dangerous-direct-browser-access': 'true'
-    },
-    body: JSON.stringify({
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 500,
-      messages: [
-        {
-          role: 'user',
-          content: `You are a branding expert. Given this business idea, respond ONLY with valid JSON (no markdown, no explanation).
+  const prefixes = ['Nova', 'Spark', 'Bright', 'Swift', 'Peak', 'Zen', 'Bold', 'Pure', 'Wise', 'Glow'];
+  const suffixes = ['Hub', 'Pro', 'Lab', 'Base', 'Spot', 'Desk', 'Flow', 'Nest', 'Box', 'Hive'];
+  const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+  const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
+  const keyword = words.find(w => w.length > 3) || words[0];
+  const businessName = prefix + keyword.charAt(0).toUpperCase() + keyword.slice(1);
 
-Business idea: "${idea}"
+  const taglines = [
+    `The smarter way to ${idea.toLowerCase()}.`,
+    `Built for people who care about ${keyword}.`,
+    `Your ${keyword} journey starts here.`,
+    `Simple. Fast. Built around ${keyword}.`,
+    `Redefining what ${keyword} really means.`
+  ];
+  const tagline = taglines[Math.floor(Math.random() * taglines.length)];
 
-JSON format:
-{
-  "businessName": "a catchy business name",
-  "tagline": "a short inspiring tagline",
-  "features": ["feature 1", "feature 2", "feature 3"],
-  "cta": "a call-to-action button text"
-}`
-        }
-      ]
-    })
-  });
+  const featureSets = [
+    [
+      `Lightning-fast ${keyword} experience`,
+      `Smart tools designed for real results`,
+      `Trusted by thousands of happy users`
+    ],
+    [
+      `Simple setup, zero learning curve`,
+      `Powerful features without the complexity`,
+      `24/7 support whenever you need it`
+    ],
+    [
+      `Built with your goals in mind`,
+      `Seamless and intuitive from day one`,
+      `Scales as your needs grow`
+    ]
+  ];
+  const features = featureSets[Math.floor(Math.random() * featureSets.length)];
 
-  if (!response.ok) {
-    throw new Error(`API error: ${response.status}`);
-  }
+  const ctas = [
+    'Get Started Free',
+    'Try It Now',
+    'Start Today',
+    'Join for Free',
+    'See It in Action'
+  ];
+  const cta = ctas[Math.floor(Math.random() * ctas.length)];
 
-  const data = await response.json();
-  const text = data.content[0].text;
-  return JSON.parse(text);
+  return { businessName, tagline, features, cta };
 }
 
 function displayResult(data) {
