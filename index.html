@@ -4,37 +4,54 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AI Landing Page Generator</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=2" />
 </head>
 <body>
 
-  <div class="container">
+  <!-- Hero / Input -->
+  <div class="hero">
     <h1>AI Landing Page Generator</h1>
-    <p class="subtitle">Enter your business idea and let AI build your landing page.</p>
+    <p>Describe your business idea and get a ready-made landing page instantly.</p>
 
-    <!-- Input Section -->
-    <div class="input-section">
-      <textarea id="businessIdea" placeholder="Describe your business idea... e.g. A bakery that delivers fresh bread every morning"></textarea>
+    <div class="input-card">
+      <textarea id="businessIdea" placeholder="e.g. A bakery selling vintage pastries in the city centre"></textarea>
       <button id="generateBtn" onclick="generatePage()">Generate Landing Page</button>
-    </div>
-
-    <!-- Output Section (hidden until generated) -->
-    <div class="output-section" id="output" style="display:none;">
-      <div class="landing-preview">
-        <h2 id="businessName"></h2>
-        <p id="tagline" class="tagline"></p>
-
-        <div class="features">
-          <div class="feature-card" id="feature1"></div>
-          <div class="feature-card" id="feature2"></div>
-          <div class="feature-card" id="feature3"></div>
-        </div>
-
-        <button class="cta-btn" id="ctaBtn"></button>
-      </div>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <!-- Output -->
+  <div class="output-section" id="output" style="display:none;">
+    <div class="landing-preview">
+
+      <!-- Preview Hero -->
+      <div class="preview-hero">
+        <h2 id="businessName"></h2>
+        <p id="tagline" class="tagline"></p>
+        <button class="cta-btn" id="ctaBtn"></button>
+      </div>
+
+      <!-- Features -->
+      <div class="features">
+        <div class="feature-card" id="feature1"></div>
+        <div class="feature-card" id="feature2"></div>
+        <div class="feature-card" id="feature3"></div>
+      </div>
+
+      <!-- Contact -->
+      <div class="contact-section">
+        <h3>Get in Touch</h3>
+        <p>Interested? Send us a message and we'll get back to you shortly.</p>
+        <form class="contact-form" onsubmit="handleContact(event)">
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
+          <textarea placeholder="Your Message" rows="4" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js?v=2"></script>
 </body>
 </html>
