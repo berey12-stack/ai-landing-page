@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Landing Page Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <h1>AI Landing Page Generator</h1>
+    <p class="subtitle">Enter your business idea and let AI build your landing page.</p>
+
+    <!-- Input Section -->
+    <div class="input-section">
+      <textarea id="businessIdea" placeholder="Describe your business idea... e.g. A bakery that delivers fresh bread every morning"></textarea>
+      <button id="generateBtn" onclick="generatePage()">Generate Landing Page</button>
+    </div>
+
+    <!-- Output Section (hidden until generated) -->
+    <div class="output-section" id="output" style="display:none;">
+      <div class="landing-preview">
+        <h2 id="businessName"></h2>
+        <p id="tagline" class="tagline"></p>
+
+        <div class="features">
+          <div class="feature-card" id="feature1"></div>
+          <div class="feature-card" id="feature2"></div>
+          <div class="feature-card" id="feature3"></div>
+        </div>
+
+        <button class="cta-btn" id="ctaBtn"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
