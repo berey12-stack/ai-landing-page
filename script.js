@@ -33,23 +33,25 @@ function generatePage() {
 
 function detectType(idea) {
   const text = idea.toLowerCase();
-  if (/car|auto|vehicle|workshop|servic|tyre|tyre|mechanic|motor|engine|detailing/.test(text)) return 'automotive';
+  if (/car|auto|vehicle|workshop|servic|tyre|mechanic|motor|engine|detailing/.test(text)) return 'automotive';
   if (/bak|pastry|bread|cake|cookie|dessert/.test(text)) return 'bakery';
   if (/coffee|cafe|brew|latte|espresso/.test(text))      return 'cafe';
+  if (/eco|green|environment|sustainable|organic|recycle|nature|zero.waste|planet/.test(text)) return 'eco';
   if (/tech|app|software|saas|digital|ai|platform/.test(text)) return 'tech';
-  if (/shop|store|sell|retail|product/.test(text))       return 'shop';
   if (/food|meal|kitchen|chef|deliver|restaurant/.test(text))  return 'food';
   if (/gym|fitness|health|wellness|yoga|workout/.test(text))   return 'fitness';
   if (/school|learn|course|teach|educat/.test(text))     return 'education';
   if (/clean|laundry|wash|home service/.test(text))      return 'service';
   if (/salon|hair|beauty|nail|spa|barber/.test(text))    return 'beauty';
+  if (/shop|store|sell|retail|product|household|item/.test(text)) return 'shop';
   return 'general';
 }
 
 function generateContent(idea) {
   const type = detectType(idea);
   // Use the business name field if filled in, otherwise generate one
-  const customName = document.getElementById('businessName_input').value.trim();
+  const nameEl = document.getElementById('businessName_input');
+  const customName = nameEl ? nameEl.value.trim() : '';
 
   const templates = {
     bakery: {
@@ -114,6 +116,15 @@ function generateContent(idea) {
         ['Live sessions with Q&A and mentorship', 'Self-paced modules you can revisit anytime', 'Community of learners to keep you motivated'],
       ],
       ctas: ['Start Learning Free', 'Browse Courses', 'Get Certified']
+    },
+    eco: {
+      names: ['GreenNest', 'EcoBloom', 'PureEarth', 'LeafCo', 'TerraCraft'],
+      taglines: ['Good for you. Great for the planet.', 'Live green. Live better.', 'Small changes. Big impact.'],
+      features: [
+        ['100% eco-friendly and sustainably sourced products', 'Zero-waste packaging on every order', 'Every purchase plants a tree'],
+        ['Natural ingredients, no harmful chemicals', 'Proudly carbon-neutral since day one', 'Trusted by thousands of conscious consumers'],
+      ],
+      ctas: ['Shop Sustainably', 'Go Green Today', 'Explore Products']
     },
     service: {
       names: ['ClearNest', 'SwiftServe', 'HomePro', 'CleanBase', 'BrightHome'],
