@@ -1,3 +1,20 @@
+function setColor(btn) {
+  document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('themeColor').value = btn.dataset.color;
+}
+
+// sync custom color picker with presets
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('themeColor').addEventListener('input', () => {
+    document.querySelectorAll('.preset').forEach(b => b.classList.remove('active'));
+  });
+});
+
+function getThemeColor() {
+  return document.getElementById('themeColor').value || '#7c3aed';
+}
+
 function generatePage() {
   const idea = document.getElementById('businessIdea').value.trim();
   if (!idea) { alert('Please enter a business idea first!'); return; }
@@ -125,6 +142,97 @@ function generateContent(idea) {
   };
 }
 
+function downloadPage() {
+  const name = document.getElementById('businessName').textContent;
+  const tagline = document.getElementById('tagline').textContent;
+  const f1 = document.getElementById('feature1').textContent;
+  const f2 = document.getElementById('feature2').textContent;
+  const f3 = document.getElementById('feature3').textContent;
+  const cta = document.getElementById('ctaBtn').textContent;
+  const color = getThemeColor();
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>${name}</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Segoe UI',sans-serif; background:#0f0f13; color:#f1f1f1; }
+    .hero { background:${color}; padding:80px 24px; text-align:center; }
+    h1 { font-size:2.8rem; font-weight:800; color:#fff; margin-bottom:16px; }
+    .tagline { font-size:1.15rem; color:rgba(255,255,255,0.8); margin-bottom:32px; }
+    .cta { padding:14px 40px; background:rgba(0,0,0,0.25); color:#fff; border:2px solid rgba(255,255,255,0.5); border-radius:50px; font-size:1rem; font-weight:600; cursor:pointer; }
+    .features { display:grid; grid-template-columns:repeat(3,1fr); background:#fff; color:#111; }
+    .feature { padding:32px 24px; border-right:1px solid #f3f4f6; text-align:center; font-size:0.95rem; line-height:1.6; }
+    .feature:last-child { border-right:none; }
+    .feature::before { content:'✦'; display:block; color:${color}; margin-bottom:10px; font-size:1.1rem; }
+    .contact { background:#fafafa; color:#111; padding:48px 24px; text-align:center; border-top:1px solid #f3f4f6; }
+    .contact h2 { font-size:1.4rem; margin-bottom:8px; }
+    .contact p { color:#6b7280; margin-bottom:24px; }
+    form { display:flex; flex-direction:column; gap:12px; max-width:420px; margin:0 auto; }
+    input, textarea { padding:12px 16px; border:1.5px solid #e5e7eb; border-radius:10px; font-size:0.95rem; font-family:inherit; }
+    form button { padding:13px; background:${color}; color:#fff; border:none; border-radius:10px; font-weight:600; cursor:pointer; }
+    @media(max-width:600px){ .features{grid-template-columns:1fr;} h1{font-size:1.8rem;} }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>${name}</h1>
+    <p class="tagline">${tagline}</p>
+    <button class="cta">${cta}</button>
+  </div>
+  <div class="features">
+    <div class="feature">${f1}</div>
+    <div class="feature">${f2}</div>
+    <div class="feature">${f3}</div>
+  </div>
+  <div class="contact">
+    <h2>Get in Touch</h2>
+    <p>Interested? Send us a message and we'll get back to you.</p>
+    <form onsubmit="alert('Message sent!');return false;">
+      <input type="text" placeholder="Your Name" required/>
+      <input type="email" placeholder="Your Email" required/>
+      <textarea rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+</body>
+</html>`;
+
+  const blob = new Blob([html], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${name.toLowerCase().replace(/\s+/g, '-')}.html`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function generateBio() {
+  const link = document.getElementById('userLink').value.trim();
+  const name = document.getElementById('businessName').textContent;
+  const tagline = document.getElementById('tagline').textContent;
+
+  if (!link) { alert('Please paste your page link first!'); return; }
+
+  const bio = `✨ ${name} ✨\n${tagline}\n\n🔗 Check us out here: ${link}\n\n📩 DM us or visit the link to get in touch!`;
+
+  document.getElementById('bioText').textContent = bio;
+  document.getElementById('bioOutput').style.display = 'flex';
+  document.getElementById('copyConfirm').style.display = 'none';
+}
+
+function copyBio() {
+  const bio = document.getElementById('bioText').textContent;
+  navigator.clipboard.writeText(bio).then(() => {
+    const confirm = document.getElementById('copyConfirm');
+    confirm.style.display = 'inline';
+    setTimeout(() => confirm.style.display = 'none', 2500);
+  });
+}
+
 function handleContact(e) {
   e.preventDefault();
   alert('Thank you! Your message has been sent.');
@@ -139,7 +247,16 @@ function displayResult(data) {
   document.getElementById('feature3').textContent = data.features[2];
   document.getElementById('ctaBtn').textContent = data.cta;
 
+  // Apply theme color to preview
+  const color = getThemeColor();
+  document.querySelector('.preview-hero').style.background = color;
+  document.querySelector('.cta-btn').style.background = color;
+  document.querySelectorAll('.feature-card::before');
+  document.querySelectorAll('.feature-card').forEach(c => c.style.setProperty('--accent', color));
+  document.querySelectorAll('.step-num').forEach(n => n.style.background = color);
+
   const output = document.getElementById('output');
   output.style.display = 'block';
+  document.getElementById('publishSection').style.display = 'block';
   output.scrollIntoView({ behavior: 'smooth' });
 }

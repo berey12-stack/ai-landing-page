@@ -15,6 +15,18 @@
 
     <div class="input-card">
       <textarea id="businessIdea" placeholder="e.g. A bakery selling vintage pastries in the city centre"></textarea>
+      <div class="color-row">
+        <label for="themeColor">Choose your theme colour:</label>
+        <div class="color-presets">
+          <button class="preset active" style="background:#7c3aed" data-color="#7c3aed" onclick="setColor(this)"></button>
+          <button class="preset" style="background:#dc2626" data-color="#dc2626" onclick="setColor(this)"></button>
+          <button class="preset" style="background:#d97706" data-color="#d97706" onclick="setColor(this)"></button>
+          <button class="preset" style="background:#16a34a" data-color="#16a34a" onclick="setColor(this)"></button>
+          <button class="preset" style="background:#0891b2" data-color="#0891b2" onclick="setColor(this)"></button>
+          <button class="preset" style="background:#db2777" data-color="#db2777" onclick="setColor(this)"></button>
+          <input type="color" id="themeColor" value="#7c3aed" title="Pick a custom colour" />
+        </div>
+      </div>
       <button id="generateBtn" onclick="generatePage()">Generate Landing Page</button>
     </div>
   </div>
@@ -50,8 +62,72 @@
       </div>
 
     </div>
+
+    <!-- Publish Section -->
+    <div class="publish-section" id="publishSection" style="display:none;">
+      <div class="publish-card">
+
+        <div class="publish-header">
+          <span class="publish-icon">🚀</span>
+          <h3>Put This on Your Instagram / Facebook</h3>
+          <p>Your landing page is ready. Follow these steps to get it online and share it.</p>
+        </div>
+
+        <div class="steps-list">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <strong>Download your HTML file</strong>
+              <span>Click the button below to save your page to your computer.</span>
+              <button class="download-btn" onclick="downloadPage()">⬇ Download HTML File</button>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <strong>Upload it to GitHub</strong>
+              <span>Go to <a href="https://github.com/new" target="_blank">github.com/new</a>, create a free account, make a new repo, and upload your file.</span>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <strong>Enable GitHub Pages</strong>
+              <span>In your repo, go to <em>Settings → Pages</em>, set Source to <em>main branch</em>, and click Save.</span>
+            </div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <strong>Copy your link</strong>
+              <span>Your free link will be: <code>https://yourusername.github.io/your-repo-name/</code></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bio Section -->
+        <div class="bio-section">
+          <h4>📱 Ready to share on Instagram / Facebook?</h4>
+          <p>Once your page is live, paste your link below and we'll write your bio for you.</p>
+          <div class="bio-input-row">
+            <input type="text" id="userLink" placeholder="https://yourusername.github.io/your-repo/" />
+            <button onclick="generateBio()">Generate Bio</button>
+          </div>
+          <div class="bio-output" id="bioOutput" style="display:none;">
+            <p id="bioText"></p>
+            <button class="copy-bio-btn" onclick="copyBio()">📋 Copy for Instagram Bio</button>
+            <span class="copy-confirm" id="copyConfirm">Copied!</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 
-  <script src="script.js?v=2"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>
