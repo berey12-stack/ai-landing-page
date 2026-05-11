@@ -17,7 +17,7 @@ function getThemeColor() {
 
 function generatePage() {
   const idea = document.getElementById('businessIdea').value.trim();
-  if (!idea) { alert('Please enter a business idea first!'); return; }
+  if (!idea) { alert('Please describe your business first!'); return; }
 
   const btn = document.getElementById('generateBtn');
   btn.textContent = 'Generating...';
@@ -33,6 +33,7 @@ function generatePage() {
 
 function detectType(idea) {
   const text = idea.toLowerCase();
+  if (/car|auto|vehicle|workshop|servic|tyre|tyre|mechanic|motor|engine|detailing/.test(text)) return 'automotive';
   if (/bak|pastry|bread|cake|cookie|dessert/.test(text)) return 'bakery';
   if (/coffee|cafe|brew|latte|espresso/.test(text))      return 'cafe';
   if (/tech|app|software|saas|digital|ai|platform/.test(text)) return 'tech';
@@ -41,11 +42,14 @@ function detectType(idea) {
   if (/gym|fitness|health|wellness|yoga|workout/.test(text))   return 'fitness';
   if (/school|learn|course|teach|educat/.test(text))     return 'education';
   if (/clean|laundry|wash|home service/.test(text))      return 'service';
+  if (/salon|hair|beauty|nail|spa|barber/.test(text))    return 'beauty';
   return 'general';
 }
 
 function generateContent(idea) {
   const type = detectType(idea);
+  // Use the business name field if filled in, otherwise generate one
+  const customName = document.getElementById('businessName_input').value.trim();
 
   const templates = {
     bakery: {
@@ -120,6 +124,24 @@ function generateContent(idea) {
       ],
       ctas: ['Book a Service', 'Get a Free Quote', 'Schedule Now']
     },
+    automotive: {
+      names: ['AutoPro', 'RevWorks', 'DriveServ', 'TorqueLab', 'PitStop'],
+      taglines: ['Your car deserves the best care.', 'Expert hands. Every service.', 'Drive in. Drive out confident.'],
+      features: [
+        ['Full car servicing by certified mechanics', 'Transparent pricing — no hidden charges', 'Same-day service available, walk-ins welcome'],
+        ['Engine checks, tyre, brakes & more', 'Genuine parts used on every repair', 'Free inspection with every service booking'],
+      ],
+      ctas: ['Book a Service', 'Get a Free Quote', 'Call Us Now']
+    },
+    beauty: {
+      names: ['GlowStudio', 'BloomSalon', 'VelvetTouch', 'PureGlow', 'NestBeauty'],
+      taglines: ['Look good. Feel amazing.', 'Where beauty meets confidence.', 'Your glow-up starts here.'],
+      features: [
+        ['Expert stylists with years of experience', 'Premium products for lasting results', 'Relaxing atmosphere from the moment you walk in'],
+        ['Flexible appointments 7 days a week', 'Personalised treatments for every skin type', 'Special packages for groups and events'],
+      ],
+      ctas: ['Book Now', 'See Our Services', 'Get a Makeover']
+    },
     general: {
       names: ['NovaCo', 'SparkBase', 'BoldNest', 'PeakFlow', 'ZenHub'],
       taglines: ['Built for people who want better.', 'Simple idea. Powerful results.', 'The smarter way to get things done.'],
@@ -135,7 +157,7 @@ function generateContent(idea) {
   const pick = arr => arr[Math.floor(Math.random() * arr.length)];
 
   return {
-    businessName: pick(t.names),
+    businessName: customName || pick(t.names),
     tagline: pick(t.taglines),
     features: pick(t.features),
     cta: pick(t.ctas)
@@ -251,9 +273,14 @@ function displayResult(data) {
   const color = getThemeColor();
   document.querySelector('.preview-hero').style.background = color;
   document.querySelector('.cta-btn').style.background = color;
-  document.querySelectorAll('.feature-card::before');
-  document.querySelectorAll('.feature-card').forEach(c => c.style.setProperty('--accent', color));
   document.querySelectorAll('.step-num').forEach(n => n.style.background = color);
+  // Inject a <style> tag to override the ::before pseudo-element color
+  const existing = document.getElementById('dynamic-accent');
+  if (existing) existing.remove();
+  const styleTag = document.createElement('style');
+  styleTag.id = 'dynamic-accent';
+  styleTag.textContent = `.feature-card::before { color: ${color} !important; }`;
+  document.head.appendChild(styleTag);
 
   const output = document.getElementById('output');
   output.style.display = 'block';

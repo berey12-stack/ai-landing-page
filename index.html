@@ -14,7 +14,14 @@
     <p>Describe your business idea and get a ready-made landing page instantly.</p>
 
     <div class="input-card">
-      <textarea id="businessIdea" placeholder="e.g. A bakery selling vintage pastries in the city centre"></textarea>
+      <div class="field-group">
+        <label class="field-label">Business Name <span class="optional">(optional)</span></label>
+        <input type="text" id="businessName_input" placeholder="e.g. Automac Works, Sweet Crumbs, Nova Tech..." />
+      </div>
+      <div class="field-group">
+        <label class="field-label">Describe your business <span class="optional">(what you do, who it's for, any promotions)</span></label>
+        <textarea id="businessIdea" placeholder="e.g. Car servicing workshop, June–August promotion, walk-in and appointments welcome"></textarea>
+      </div>
       <div class="color-row">
         <label for="themeColor">Choose your theme colour:</label>
         <div class="color-presets">
