@@ -39,13 +39,15 @@
 ### 📅 DAY 3 — On-Page SEO & Keyword Content
 *Why: Google ranks pages on relevance — needs real keyword content.*
 
-- [ ] Rewrite hero H1 with target keywords ("Free AI Landing Page Generator")
-- [ ] Add a "How it Works" section (3 steps with keyword-rich copy)
-- [ ] Add a "Why use this" / Features section
-- [ ] Add an FAQ section (great for SEO + featured snippets)
-- [ ] Add alt text to all images
-- [ ] Create `sitemap.xml` and `robots.txt`
+- [x] Rewrite hero H1 with target keywords — "Create a Free Business Website for Instagram & Facebook Sellers"
+- [x] Rebrand to QuickBiz Site throughout
+- [x] Add "How It Works" section (3 steps, keyword-rich)
+- [x] Add "Why QuickBiz Site" features grid (6 trust signals)
+- [x] Add FAQ section (6 questions — targets Google "People Also Ask")
+- [x] Add site footer
+- [x] Create `sitemap.xml` and `robots.txt`
 - [ ] Submit sitemap to Google Search Console
+- [ ] Validate with Google Rich Results Test
 
 ---
 
