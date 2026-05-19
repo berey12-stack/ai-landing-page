@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="50%" style="stop-color:#16213e"/>
+      <stop offset="100%" style="stop-color:#0f3460"/>
+    </linearGradient>
+    <linearGradient id="text-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#a78bfa"/>
+      <stop offset="100%" style="stop-color:#60a5fa"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="1050" cy="100" r="180" fill="#7c3aed" opacity="0.12"/>
+  <circle cx="150" cy="530" r="140" fill="#2563eb" opacity="0.12"/>
+
+  <!-- Rocket emoji -->
+  <text x="600" y="200" font-size="90" text-anchor="middle" font-family="Segoe UI Emoji, Apple Color Emoji, sans-serif">🚀</text>
+
+  <!-- Main title -->
+  <text x="600" y="295" font-size="62" font-weight="800" text-anchor="middle"
+        font-family="Segoe UI, system-ui, sans-serif" fill="url(#text-grad)">
+    AI Landing Page Generator
+  </text>
+
+  <!-- Subtitle -->
+  <text x="600" y="360" font-size="28" text-anchor="middle"
+        font-family="Segoe UI, system-ui, sans-serif" fill="#94a3b8">
+    Build a professional landing page from any business idea
+  </text>
+
+  <!-- Tag pills -->
+  <rect x="270" y="400" width="190" height="44" rx="22" fill="#7c3aed" opacity="0.3"/>
+  <text x="365" y="428" font-size="18" text-anchor="middle" font-family="Segoe UI, sans-serif" fill="#a78bfa">✦ Free</text>
+
+  <rect x="490" y="400" width="220" height="44" rx="22" fill="#7c3aed" opacity="0.3"/>
+  <text x="600" y="428" font-size="18" text-anchor="middle" font-family="Segoe UI, sans-serif" fill="#a78bfa">✦ No Coding</text>
+
+  <rect x="740" y="400" width="200" height="44" rx="22" fill="#7c3aed" opacity="0.3"/>
+  <text x="840" y="428" font-size="18" text-anchor="middle" font-family="Segoe UI, sans-serif" fill="#a78bfa">✦ Instant</text>
+
+  <!-- URL -->
+  <text x="600" y="560" font-size="22" text-anchor="middle"
+        font-family="Segoe UI, system-ui, sans-serif" fill="#475569">
+    berey12-stack.github.io/ai-landing-page
+  </text>
+</svg>
