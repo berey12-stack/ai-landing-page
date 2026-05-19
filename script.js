@@ -183,13 +183,41 @@ function downloadPage() {
   const f3 = document.getElementById('feature3').textContent;
   const cta = document.getElementById('ctaBtn').textContent;
   const color = getThemeColor();
+  const locationEl = document.getElementById('businessLocation');
+  const location = locationEl ? locationEl.value.trim() : '';
+  const idea = document.getElementById('businessIdea').value.trim();
+  const type = detectType(idea);
+
+  // Build LocalBusiness JSON-LD schema
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": name,
+    "description": tagline,
+    "address": location ? {
+      "@type": "PostalAddress",
+      "addressLocality": location,
+      "addressCountry": "MY"
+    } : undefined
+  };
 
   const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>${name}</title>
+  <title>${name}${location ? ' – ' + location : ''}</title>
+  <meta name="description" content="${tagline}${location ? ' Based in ' + location + '.' : ''}" />
+  <meta name="robots" content="index, follow" />
+  ${location ? `<meta name="geo.placename" content="${location}" />
+  <meta name="geo.region" content="MY" />
+  <meta property="og:locale" content="en_MY" />` : ''}
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="${name}${location ? ' – ' + location : ''}" />
+  <meta property="og:description" content="${tagline}" />
+  <!-- LocalBusiness Schema -->
+  <script type="application/ld+json">${JSON.stringify(schema, null, 2)}<\/script>
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'Segoe UI',sans-serif; background:#0f0f13; color:#f1f1f1; }
@@ -247,10 +275,13 @@ function generateBio() {
   const link = document.getElementById('userLink').value.trim();
   const name = document.getElementById('businessName').textContent;
   const tagline = document.getElementById('tagline').textContent;
+  const locationEl = document.getElementById('businessLocation');
+  const location = locationEl ? locationEl.value.trim() : '';
 
   if (!link) { alert('Please paste your page link first!'); return; }
 
-  const bio = `✨ ${name} ✨\n${tagline}\n\n🔗 Check us out here: ${link}\n\n📩 DM us or visit the link to get in touch!`;
+  const locationLine = location ? `📍 Based in ${location}\n` : '';
+  const bio = `✨ ${name} ✨\n${tagline}\n\n${locationLine}🔗 Check us out here: ${link}\n\n📩 DM us or visit the link to get in touch!`;
 
   document.getElementById('bioText').textContent = bio;
   document.getElementById('bioOutput').style.display = 'flex';

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://berey12-stack.github.io/ai-landing-page/sitemap.xml
