@@ -26,11 +26,13 @@
 *Why: Helps Google understand your site and rank it for local searches.*
 
 - [ ] Add JSON-LD `WebApplication` schema to generator site
-- [ ] Add JSON-LD `LocalBusiness` schema to **generated pages**
-- [ ] Add a Location/City input field in the generator
-- [ ] Auto-inject `geo.region`, `geo.placename` meta tags into generated pages
-- [ ] Add `lang` and `hreflang` tags
+- [x] Add JSON-LD `LocalBusiness` schema to **generated pages**
+- [x] Add a Location/City input field in the generator
+- [x] Auto-inject `geo.region`, `geo.placename` meta tags into generated pages
+- [x] Add `sitemap.xml` and `robots.txt`
+- [x] Location auto-included in Instagram bio text
 - [ ] Validate with Google's Rich Results Test
+- [ ] Submit sitemap to Google Search Console
 
 ---
 
