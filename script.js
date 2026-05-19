@@ -286,6 +286,17 @@ function generateBio() {
   document.getElementById('bioText').textContent = bio;
   document.getElementById('bioOutput').style.display = 'flex';
   document.getElementById('copyConfirm').style.display = 'none';
+
+  // Populate share my page buttons
+  const shareSection = document.getElementById('sharePageSection');
+  if (shareSection && link) {
+    const shareText = encodeURIComponent(`Check out ${name} – ${tagline}`);
+    const shareUrl = encodeURIComponent(link);
+    document.getElementById('shareWA').href = `https://api.whatsapp.com/send?text=${shareText}+${shareUrl}`;
+    document.getElementById('shareFB').href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
+    document.getElementById('shareX').href = `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
+    shareSection.style.display = 'block';
+  }
 }
 
 function copyBio() {
