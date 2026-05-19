@@ -28,6 +28,8 @@ function generatePage() {
     displayResult(result);
     btn.textContent = 'Generate Landing Page';
     btn.disabled = false;
+    // GA4 event
+    if (typeof gtag === 'function') gtag('event', 'generate_clicked', { event_category: 'engagement', event_label: idea.substring(0, 50) });
   }, 1000);
 }
 
@@ -176,6 +178,8 @@ function generateContent(idea) {
 }
 
 function downloadPage() {
+  // GA4 event
+  if (typeof gtag === 'function') gtag('event', 'download_clicked', { event_category: 'engagement' });
   const name = document.getElementById('businessName').textContent;
   const tagline = document.getElementById('tagline').textContent;
   const f1 = document.getElementById('feature1').textContent;
@@ -300,6 +304,8 @@ function generateBio() {
 }
 
 function copyBio() {
+  // GA4 event
+  if (typeof gtag === 'function') gtag('event', 'copy_bio_clicked', { event_category: 'engagement' });
   const bio = document.getElementById('bioText').textContent;
   navigator.clipboard.writeText(bio).then(() => {
     const confirm = document.getElementById('copyConfirm');
