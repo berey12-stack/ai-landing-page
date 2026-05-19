@@ -10,12 +10,13 @@
 ### 📅 DAY 1 — SEO Foundation (Meta + Social Preview)
 *Why first: instant impact every time the link is shared.*
 
-- [ ] Add `<title>` and `<meta name="description">` to generator site
-- [ ] Add `<meta name="keywords">` with target keywords
-- [ ] Add Open Graph tags (og:title, og:description, og:image, og:url)
-- [ ] Add Twitter Card tags
-- [ ] Create a 1200x630 social preview image (`og-image.png`)
-- [ ] Add a favicon (use emoji or simple icon)
+- [x] Add `<title>` and `<meta name="description">` to generator site
+- [x] Add `<meta name="keywords">` with target keywords
+- [x] Add Open Graph tags (og:title, og:description, og:image, og:url)
+- [x] Add Twitter Card tags
+- [x] Create a 1200x630 social preview image (`og-image.png`)
+- [x] Add a favicon (rocket emoji)
+- [x] Add JSON-LD WebApplication structured data
 - [ ] Apply the same meta tag system to **generated/downloaded** pages
 - [ ] Test link preview on WhatsApp, Facebook, Twitter
 
