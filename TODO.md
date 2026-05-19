@@ -54,13 +54,13 @@
 ### 📅 DAY 4 — Social Sharing & Distribution
 *Why: Backlinks and shares = the strongest ranking signal.*
 
-- [ ] Add "Share this generator" buttons on the page
-- [ ] Add "Share my landing page" buttons after generation
-- [ ] Set up Google Search Console (verify ownership)
+- [x] Add "Share QuickBiz Site" buttons (WhatsApp, Facebook, X)
+- [x] Add "Share my page" buttons after generation (auto-populated with business name + link)
+- [x] Google Search Console — ownership verified ✅
+- [x] Google Search Console — sitemap submitted
 - [ ] Set up Bing Webmaster Tools
-- [ ] Prepare a Product Hunt launch post
-- [ ] Prepare 3 social posts (Twitter, LinkedIn, Reddit r/SideProject)
 - [ ] Submit to free tool directories (alternativeto, betalist, etc.)
+- [ ] Prepare social posts for launch
 
 ---
 
